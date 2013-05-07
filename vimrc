@@ -38,9 +38,9 @@ autocmd FileType python setlocal et sta sw=4 sts=4
 
 
 "五：python 代码折叠
-autocmd FileType python setlocal foldmethod=indent
+"autocmd FileType python setlocal foldmethod=indent
 "默认展开所有代码
-set foldlevel=99
+"set foldlevel=99
 
 
 "六：设置文件编码
