@@ -1,3 +1,8 @@
+"Author：budong
+"Date: 2013-05-07
+"Addres: sias
+"使用：cp vimrc ~/.vimrc
+"""""""""""""""""""""""""""""""""""""""""""
 "关闭vi兼容
 set nocompatible
 "一：基本配置
@@ -94,7 +99,7 @@ exec "e! %"
 endfunc
 "结束定义FormartSrc
 
-
+"""""""""""""""""""""""""""""""""""""""""""""
 if v:lang =~ "utf8$" || v:lang =~ "UTF-8$"
    set fileencodings=ucs-bom,utf-8,latin1
 endif
