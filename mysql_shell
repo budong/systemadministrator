@@ -1,0 +1,12 @@
+1.新建数据库budong_db,授权budong使用budong_db所有权限
+create database budong_db;
+grant all privileges on budong_db.* to 'budong'@'%' identified by '123456';
+
+2.回收权限
+revoke all privileges on budong_db.* from 'budong'@'%' identified by '123456';
+
+3.更改密码
+set password for 'budong'@'%' = password('budong123456');
+
+4.删除用户
+drop user drop 'budong'@'%';
