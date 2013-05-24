@@ -1,6 +1,8 @@
 1.新建数据库budong_db,授权budong使用budong_db所有权限
 create database budong_db;
 grant all privileges on budong_db.* to 'budong'@'%' identified by '123456';
+只授予一部分权限
+grant select,insert,update,delete  on budong_db.* to 'budong'@'%' identified by '123456';
 
 2.回收权限
 revoke all privileges on budong_db.* from 'budong'@'%' identified by '123456';
