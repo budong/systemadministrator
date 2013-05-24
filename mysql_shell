@@ -8,10 +8,14 @@ grant select,insert,update,delete  on budong_db.* to 'budong'@'%' identified by 
 revoke all privileges on budong_db.* from 'budong'@'%' identified by '123456';
 
 3.更改密码
+A:
 set password for 'budong'@'%' = password('budong123456');
 mysql安装完毕后，更改mysql密码(修改自己密码)
 mysql -uroot 
 set password=password('budong');
+B:
+use mysql;
+update user set password=password('新密码') where User="budong" and Host="localhost";
 
 4.删除用户
 drop user drop 'budong'@'%';
