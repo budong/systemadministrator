@@ -7,6 +7,9 @@ revoke all privileges on budong_db.* from 'budong'@'%' identified by '123456';
 
 3.更改密码
 set password for 'budong'@'%' = password('budong123456');
+mysql安装完毕后，更改mysql密码(修改自己密码)
+mysql -uroot 
+set password=password('budong');
 
 4.删除用户
 drop user drop 'budong'@'%';
