@@ -1,3 +1,5 @@
+文档地址：http://subversion.apache.org/
+
 一：下载subversion
 wget http://subversion.tigris.org/downloads/subversion-1.6.1.tar.gz
 wget http://subversion.tigris.org/downloads/subversion-deps-1.6.1.tar.gz
