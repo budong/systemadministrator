@@ -10,7 +10,7 @@ chown mysql.mysql -R /data/mysql_db/
 
 #设置mysql目录权限
 cd /usr/local/mysql 
-chown -R root:mysql .
+chown -R mysql:mysql .
 chown -R mysql:mysql data
 
 

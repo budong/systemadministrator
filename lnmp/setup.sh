@@ -91,6 +91,7 @@ if [ ! -d mysql-5.5.29 ];then
     -DMYSQL_TCP_PORT=3306
     make
     make install
+    cp support-files/my-medium.cnf /etc/my.cnf
     cd ..
     echo "/usr/local/mysql/lib">>/etc/ld.so.conf
     ldconfig
