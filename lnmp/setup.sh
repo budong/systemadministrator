@@ -26,6 +26,15 @@ make
 make install
 cd ../
 
+#Mhash为PHP提供了多种哈希算法，如MD5，SHA1，GOST 等
+#http://sourceforge.net/projects/mhash/files/?source=navbar
+tar zxvf mhash-0.9.9.9.tar.gz
+cd mhash-0.9.9.9/
+./configure
+make
+make install
+cd ../
+
 #添加加密算法扩展库，支持DES, 3DES, RIJNDAEL, Twofish, IDEA, GOST, CAST-256, ARCFOUR, SERPENT, SAFER+等算法。
 #http://mcrypt.hellug.gr/lib/
 tar zxvf libmcrypt-2.5.8.tar.gz 
@@ -48,14 +57,6 @@ make
 make install
 cd ../
 
-#Mhash为PHP提供了多种哈希算法，如MD5，SHA1，GOST 等
-#http://sourceforge.net/projects/mhash/files/?source=navbar
-tar zxvf mhash-0.9.9.9.tar.gz
-cd mhash-0.9.9.9/
-./configure
-make
-make install
-cd ../
 
 ln -s /usr/local/lib/libmcrypt.la /usr/lib/libmcrypt.la
 ln -s /usr/local/lib/libmcrypt.so /usr/lib/libmcrypt.so
