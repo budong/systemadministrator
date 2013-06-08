@@ -7,7 +7,7 @@ cd ..
 
 tar zxf memcached-1.0.2.tgz
 cd memcached-1.0.2
-/usr/local/webserver/php/bin/phpize 
+/usr/local/php_fpm/bin/phpize
 ./configure --enable-memcached --with-php-config=/usr/local/php_fpm/bin/php-config --with-libmemcached-dir=/usr/local/libmemcached
 make
 make install
