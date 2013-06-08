@@ -23,6 +23,13 @@ cd /usr/local/mysql/
 cp support-files/mysql.server /etc/init.d/mysql
 chmod 755 /etc/init.d/mysql
 chkconfig mysql on
+#解决MySQL 5.5的中文乱码
+[client]
+default-character-set=utf8
+[mysqld]
+character-set-server=utf8 
+collation-server=utf8_general_ci
+#default-storage-engine=INNODB
 
 
 ###########################参照文章#########################
