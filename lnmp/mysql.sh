@@ -29,7 +29,9 @@ default-character-set=utf8
 [mysqld]
 character-set-server=utf8 
 collation-server=utf8_general_ci
+#default-storage-engine=MYISAM
 #default-storage-engine=INNODB
+#skip-name-resolve
 
 
 ###########################参照文章#########################
