@@ -168,7 +168,8 @@ sed -i "s#;always_populate_raw_post_data = On#always_populate_raw_post_data = On
 sed -i "s#;cgi.fix_pathinfo=1#cgi.fix_pathinfo=0#g" /usr/local/php_fpm/etc/php.ini
 
 #nginx pcre
-yum -y install pcre
+#no need to do this
+#yum -y install pcre
 
 tar zxvf pcre-8.32.tar.gz
 cd pcre-8.32/
