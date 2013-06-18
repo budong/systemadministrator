@@ -18,4 +18,4 @@ use mysql;
 update user set password=password('新密码') where User="budong" and Host="localhost";
 
 4.删除用户
-drop user drop 'budong'@'%';
+drop user 'budong'@'%';
