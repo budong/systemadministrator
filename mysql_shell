@@ -19,3 +19,10 @@ update user set password=password('新密码') where User="budong" and Host="loc
 
 4.删除用户
 drop user 'budong'@'%';
+
+5.忘记root密码
+mysqld_safe --skip-grant-tables &
+mysql -u root mysql
+use mysql;
+UPDATE user SET password=PASSWORD("new password") WHERE user='root';
+FLUSH PRIVILEGES;
