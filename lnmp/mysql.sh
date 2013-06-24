@@ -10,9 +10,12 @@ chown mysql.mysql -R /data/mysql_db/
 
 #设置mysql目录权限
 cd /usr/local/mysql 
-chown -R mysql:mysql .
 chown -R mysql:mysql data
 
+
+#复制配置文件到/etc/my.cnf
+cd /usr/local/mysql
+cp support-files/my-huge.cnf /etc/my.cnf
 
 #初始化数据库
 cd /usr/local/mysql/
@@ -23,6 +26,7 @@ cd /usr/local/mysql/
 cp support-files/mysql.server /etc/init.d/mysql
 chmod 755 /etc/init.d/mysql
 chkconfig mysql on
+
 #解决MySQL 5.5的中文乱码
 [client]
 default-character-set=utf8
