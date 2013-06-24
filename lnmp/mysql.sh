@@ -264,3 +264,21 @@ collation-server=utf8_general_ci
 #was removed in v5.5.3.
 #http://lists.mysql.com/mysql/226319
 
+
+mysql主从复制
+1.确保主从的服务器上安装了相同的版本
+2.在主的服务器上，设置一个复制使用的账户，并授予replication slave权限
+grant replication slave on *.* to 'repl'@'%' identified by '123456';
+3.修改主数据库服务器的配置文件my.cnf，开启binlog,并设置server-id的值
+[mysqld]
+log-bin = mysql-bin.log
+server-id =1
+4.在主服务器上，设置读锁定有效，这个操作是为了确保没有数据库操作，一遍得到一个一致性的快照
+flush tables with read lock;
+5.然后得到主服务器上当前的二进制日志名和偏移量值。这个操作的目的是为了在从数据库启动后，从这个点开始进行数据的恢复
+show master status;
+6.现在主数据库服务器已经停止了更新操作，需要生成主数据库的备份，备份的方式有很多种，可以直接在操作系统下cp全部的数据
+文件到从数据库服务器上，也可以通过mysqldump导出数据或者ibbackup工具进行数据库的备份,这些备份操作的步骤已经在第27章中有
+详细的介绍，这里不再一一说明。如果主数据库的服务可以停止，那么直接cp数据文件应该是最快的生成快照的方法：
+tar zcvf data.tar.gz data
+
