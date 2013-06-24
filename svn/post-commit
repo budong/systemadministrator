@@ -1,0 +1,75 @@
+前言：其实利用SVN实时同步到WEB服务器即时展现出来的文章已经到处都是，但是我在做的时候 还是有不少的小问题，很多文章也没有提出来过，还有同步也是，我还是记录下自己做过的尤其是一些细节，时间一长又会忘掉了。
+
+同步程序思路：用户提交程序到SVN，SVN触发hooks,按不同的hooks进行处理，这里用到的是post-commit，利用post- commit到代码检出到SVN服务器的本地硬盘目录，再通过rsync同步到远程的WEB服务器上。
+
+知识点：
+1、SVN的hooks
+# start-commit 提交前触发事务
+# pre-commit 提交完成前触发事务
+# post-commit 提交完成时触发事务
+# pre-revprop-change 版本属性修改前触发事务
+# post-revprop-change 版本属性修改后触发事务
+通过上面这些名称编写的脚本就就可以实现多种功能了，相当强大。
+2、同步命令rsync的具体参数使用
+3、具有基个语言的编程能力bash python perl都可以实现
+
+post-commit具体实现细节
+post-commit脚本
+
+
+#!/bin/sh
+# -------------------------------------------------------------------------------
+# Filename:    post-commit
+# Description: WEB server with synchronization code by SVN
+# -------------------------------------------------------------------------------
+#Version 1.0
+#当用戶把代碼提交完成时，把代碼中的最新更改同步到 WEB服務器，同時注意不包括刪除操作。
+
+
+#Set variable
+SVN=/usr/bin/svn
+WEB=/home/test_nokia/
+RSYNC=/usr/bin/rsync
+LOG=/tmp/rsync_test_nokia.log
+WEBIP="192.168.0.23"
+export LANG=en_US.UTF-8
+ 
+#update the code from the SVN
+$SVN update $WEB --username user --password  password
+
+#如果前面的代码成功完成，会继续执行下面的代码
+if [ $? == 0 ]
+then
+    echo ""     >> $LOG
+    echo `date` >> $LOG
+    echo "##############################" >> $LOG
+    chown -R nobody:nobody /home/test_nokia/
+    #同步代码从SVN服务器到WEB服务器 notes:by the key 
+    $RSYNC -vaztpH  --timeout=90   --exclude-from=/home/svn/exclude.list $WEB root@$WEBIP:/www/ >> $LOG
+fi
+
+
+
+以上是具体的post-commit程序
+注意事项：
+1、一定要定义变量，主要是用过的命令的路径。因为SVN的考虑的安全问题，没有调用系统变量，如果手动执行是没有问题，但SVN自动执行就会无法执行了。
+2、SVN update 之前一定要先手动checkout一份出来，还有这里一定要添加用户和密码 如果只是手动一样会更新，但自动一样的不行。
+3、加上了对前一个命令的判断，如果update的时候出了问题，程序没有退出的话还会继续同步代码到WEB服务器上，这样会造成代码有问题
+4、记得要设置所属用户，因为rsync可以同步文件属性，而且我们的WEB服务器一般都不是root用户，用户不正确会造成WEB程序无法正常工作。
+5、建议最好记录日志，出错的时候可以很快的排错
+6、最后最关键的数据同步，rsync的相关参数一定要清楚，这个就不说了。注意几个场景：
+这里的环境是SVN服务器与WEB服务器是开的
+把SVN服务器定义为源服务器 WEB服务器为目的服务器
+场景一、如果目的WEB服务器为综合的混杂的，像只有一个WEB静态资源，用户提交的，自动生成的都在WEB的一个目录下，建议不要用–delete这个参数
+上面这个程序就是这样，实现的是源服务器到目的服务器的更新和添加，而没有删除操作，WEB服务器的内容会多于源SVN的服务器的
+场景二、实现镜像，即目的WEB服务器与源SVN服务器一样的数据，SVN上任何变化WEB上一样的变化，就需要–delete参数
+场景三、不需要同步某些子目录，可能有些目录是缓存的临时垃圾目录，或者是专用的图片目录（而不是样式或者排版的）要用exclude这个参数
+注意：这个参数的使用不用写绝对路径，只要目录名称就行 aa代表文件 aa/ 代表目录 ，缺点就是如果有多个子目录都是一样的名称 那么这些名称就都不会被同步
+建议用–exclude-from=/home/svn/exclude.list 用文件的形式可以方便的添加和删除
+exclude.list
+
+.svn/
+.DS_Store
+images/
+
+利用SVN的钩子还可以写出很多的程序来控制SVN 如代码提交前查看是否有写日志，是否有tab，有将换成空格，是否有不允许上传的文件，是否有超过限制大小的文件等等。
