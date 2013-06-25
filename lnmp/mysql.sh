@@ -1,5 +1,6 @@
 #!/bin/sh
 
+##############################安装Mysql的后续工作#############################
 #创建数据存放目录
 mkdir -p /data/mysql_db/
 
@@ -39,246 +40,299 @@ collation-server=utf8_general_ci
 
 
 ###########################参照文章#########################
-#点评：本文为大家介绍在CentOS-6.3中安装与配置Mysql-5.5.29的方法，有需要的朋友不妨参考下
-#一、安装mysql
-#
-#安装方式分为：rpm和源码编译安装两种，本文采用mysql源码编译方式，编译器使用Cmake。
-#软件需要mysql-5.5.29.tar.gz和cmake-2.8.10.2.tar.gz，请自行下载。
-#
-#下载地址：
-#http://mysql.mirror.kangaroot.net/Downloads/
-#http://www.cmake.org/files/v2.8/cmake-2.8.10.2.tar.gz
-#
-#其中mysql使用最新的稳定版本，即最新试用版的上一个版本，且非rc或者alpha的版本，Cmake直接用的最新版。
-#1.上传mysql-5.5.29.tar.gz和cmake-2.8.10.2.tar.gz到/usr/local文件夹下。
-#2.CentOS安装g++和ncurses-devel
-#
-#
-#
-#
-#复制代码代码如下:
-#[root@zck local]# yum install gcc-c++
-#[root@zck local]# yum install ncurses-devel
-#
-#
-#3.cmake的安装
-#
-#
-#
-#
-#复制代码代码如下:
-#[root@zck]# tar -zxv -f cmake-2.8.10.2.tar.gz // 解压压缩包
-#[root@zck local]# cd cmake-2.8.10.2
-#[root@zck cmake-2.8.10.2]# ./configure
-#[root@zck cmake-2.8.10.2]# make
-#[root@zck cmake-2.8.10.2]# make install
-#
-#
-#4.将cmake永久加入系统环境变量
-#用vi在文件/etc/profile文件中增加变量，使其永久有效，
-#[root@zck local]# vi /etc/profile
-#
-#在文件末尾追加以下两行代码：
-#
-#
-#
-#复制代码代码如下:
-#PATH=/usr/local/cmake-2.8.10.2/bin:$PATH
-#export PATH
-#
-#
-#执行以下代码使刚才的修改生效：
-#[root@zck local]# source /etc/profile
-#
-#用 export 命令查看PATH值
-#[root@zck local]# echo $PATH
-#
-#5.创建mysql的安装目录及数据库存放目录
-#
-#
-#
-#复制代码代码如下:
-#[root@zck]# mkdir -p /usr/local/mysql //安装mysql
-#[root@zck]# mkdir -p /usr/local/mysql/data //存放数据库
-#
-#
-#6.创建mysql用户及用户组
-#
-#
-#
-#复制代码代码如下:
-#[root@zck] groupadd mysql
-#[root@zck] useradd -r -g mysql mysql
-#
-#
-#7.编译安装mysql
-#
-#
-#
-#复制代码代码如下:
-#[root@zck local]# tar -zxv -f mysql-5.5.29.tar.gz //解压
-#[root@zck local]# cd mysql-5.5.29
-#[root@zck mysql-5.5.29]#
-#cmake -DCMAKE_INSTALL_PREFIX=/usr/local/mysql \
-#-DMYSQL_UNIX_ADDR=/usr/local/mysql/mysql.sock \
-#-DDEFAULT_CHARSET=utf8 \
-#-DDEFAULT_COLLATION=utf8_general_ci \
-#-DWITH_MYISAM_STORAGE_ENGINE=1 \
-#-DWITH_INNOBASE_STORAGE_ENGINE=1 \
-#-DWITH_MEMORY_STORAGE_ENGINE=1 \
-#-DWITH_READLINE=1 \
-#-DENABLED_LOCAL_INFILE=1 \
-#-DMYSQL_DATADIR=/usr/local/mysql/data \
-#-DMYSQL_USER=mysql \
-#-DMYSQL_TCP_PORT=3306
-#[root@zck mysql-5.5.29]# make
-#[root@zck mysql-5.5.29]# make install
-#
-#
-#8.检验是否安装成功
-#
-#
-#
-#
-#复制代码代码如下:
-#[root@zck mysql-5.5.29]# cd /usr/local/mysql/
-#[root@zck mysql]# ls
-#bin COPYING data docs include INSTALL-BINARY lib man mysql-test README scripts share sql-bench support-files
-#
-#
-#有bin等以上文件的话，则说明成功安装mysql。
-#
-#二、配置mysql
-#
-#9.设置mysql目录权限
-#
-#
-#
-#复制代码代码如下:
-#[root@zck mysql]# cd /usr/local/mysql //把当前目录中所有文件的所有者设为root，所属组为mysql
-#[root@zck mysql]# chown -R root:mysql .
-#[root@zck mysql]# chown -R mysql:mysql data
-#
-#
-#10.将mysql的启动服务添加到系统服务中
-#
-#
-#
-#复制代码代码如下:
-#[root@zck mysql]# cp support-files/my-medium.cnf /etc/my.cnf
-#cp：是否覆盖"/etc/my.cnf"？ y
-#
-#
-#11.创建系统数据库的表
-#
-#
-#
-#复制代码代码如下:
-#[root@zck mysql]# cd /usr/local/mysql
-#[root@zck mysql]# scripts/mysql_install_db --user=mysql
-#
-#
-#12.设置环境变量
-#
-#
-#
-#复制代码代码如下:
-#[root@zck ~]# vi /root/.bash_profile
-#在修改PATH=$PATH:$HOME/bin为：
-#PATH=$PATH:$HOME/bin:/usr/local/mysql/bin:/usr/local/mysql/lib
-#[root@zck ~]# source /root/.bash_profile //使刚才的修改生效
-#
-#
-#13.手动启动mysql
-#
-#
-#
-#复制代码代码如下:
-#[root@zck ~]# cd /usr/local/mysql
-#[root@zck mysql]# ./bin/mysqld_safe --user=mysql & //启动MySQL，但不能停止
-#mysqladmin -u root -p shutdown //此时root还没密码，所以为空值，提示输入密码时，直接回车即可。
-#
-#
-#14.将mysql的启动服务添加到系统服务中
-#
-#
-#
-#复制代码代码如下:
-#[root@zck mysql]# cp support-files/mysql.server /etc/init.d/mysql
-#
-#
-#15.启动mysql
-#
-#
-#
-#复制代码代码如下:
-#[root@zck mysql]# service mysql start
-#Starting MySQL... ERROR! The server quit without updating PID file (/usr/local/mysql/data/localhost.localdomain.pid).
-#
-#
-#启动失败：
-#我这里是权限问题，先改变权限
-#[root@zck mysql]# chown -R mysql:mysql /usr/local/mysql
-#
-#接着启动服务器
-#[root@zck mysql]# /etc/init.d/mysql start
-#
-#16.修改MySQL的root用户的密码以及打开远程连接
-#
-#
-#
-#
-#复制代码代码如下:
-#[root@zck mysql]# mysql -u root mysql
-#mysql> use mysql;
-#mysql> desc user;
-#mysql> GRANT ALL PRIVILEGES ON *.* TO root@"%" IDENTIFIED BY "root"; //为root添加远程连接的能力
-#mysql> update user set Password = password('123456') where User='root'; //设置root用户密码
-#mysql> select Host,User,Password from user where User='root';
-#mysql> flush privileges;
-#mysql> exit
-#
-#
-#17.重新登录
-#
-#
-#
-#复制代码代码如下:
-#[root@zck mysql]# mysql -u root -p
-#Enter password:123456
-#
-#
-#若还不能进行远程连接，关闭防火墙
-#
-#
-#
-#复制代码代码如下:
-#[root@zck]# /etc/rc.d/init.d/iptables stop
-#来源： <http://www.jb51.net/os/RedHat/73026.html>
-#
+点评：本文为大家介绍在CentOS-6.3中安装与配置Mysql-5.5.29的方法，有需要的朋友不妨参考下
+一、安装mysql
+
+安装方式分为：rpm和源码编译安装两种，本文采用mysql源码编译方式，编译器使用Cmake。
+软件需要mysql-5.5.29.tar.gz和cmake-2.8.10.2.tar.gz，请自行下载。
+
+下载地址：
+http://mysql.mirror.kangaroot.net/Downloads/
+http://www.cmake.org/files/v2.8/cmake-2.8.10.2.tar.gz
+
+其中mysql使用最新的稳定版本，即最新试用版的上一个版本，且非rc或者alpha的版本，Cmake直接用的最新版。
+1.上传mysql-5.5.29.tar.gz和cmake-2.8.10.2.tar.gz到/usr/local文件夹下。
+2.CentOS安装g++和ncurses-devel
 
 
-#注意问题 my.cnf
-#The above link says default-character-set is depreciated and you should
-#be   using  character-set-server. It also states default-character-set
-#was removed in v5.5.3.
-#http://lists.mysql.com/mysql/226319
 
 
-mysql主从复制
+复制代码代码如下:
+[root@zck local]# yum install gcc-c++
+[root@zck local]# yum install ncurses-devel
+
+
+3.cmake的安装
+
+
+
+
+复制代码代码如下:
+[root@zck]# tar -zxv -f cmake-2.8.10.2.tar.gz // 解压压缩包
+[root@zck local]# cd cmake-2.8.10.2
+[root@zck cmake-2.8.10.2]# ./configure
+[root@zck cmake-2.8.10.2]# make
+[root@zck cmake-2.8.10.2]# make install
+
+
+4.将cmake永久加入系统环境变量
+用vi在文件/etc/profile文件中增加变量，使其永久有效，
+[root@zck local]# vi /etc/profile
+
+在文件末尾追加以下两行代码：
+
+
+
+复制代码代码如下:
+PATH=/usr/local/cmake-2.8.10.2/bin:$PATH
+export PATH
+
+
+执行以下代码使刚才的修改生效：
+[root@zck local]# source /etc/profile
+
+用 export 命令查看PATH值
+[root@zck local]# echo $PATH
+
+5.创建mysql的安装目录及数据库存放目录
+
+
+
+复制代码代码如下:
+[root@zck]# mkdir -p /usr/local/mysql //安装mysql
+[root@zck]# mkdir -p /usr/local/mysql/data //存放数据库
+
+
+6.创建mysql用户及用户组
+
+
+
+复制代码代码如下:
+[root@zck] groupadd mysql
+[root@zck] useradd -r -g mysql mysql
+
+
+7.编译安装mysql
+
+
+
+复制代码代码如下:
+[root@zck local]# tar -zxv -f mysql-5.5.29.tar.gz //解压
+[root@zck local]# cd mysql-5.5.29
+[root@zck mysql-5.5.29]#
+cmake -DCMAKE_INSTALL_PREFIX=/usr/local/mysql \
+-DMYSQL_UNIX_ADDR=/usr/local/mysql/mysql.sock \
+-DDEFAULT_CHARSET=utf8 \
+-DDEFAULT_COLLATION=utf8_general_ci \
+-DWITH_MYISAM_STORAGE_ENGINE=1 \
+-DWITH_INNOBASE_STORAGE_ENGINE=1 \
+-DWITH_MEMORY_STORAGE_ENGINE=1 \
+-DWITH_READLINE=1 \
+-DENABLED_LOCAL_INFILE=1 \
+-DMYSQL_DATADIR=/usr/local/mysql/data \
+-DMYSQL_USER=mysql \
+-DMYSQL_TCP_PORT=3306
+[root@zck mysql-5.5.29]# make
+[root@zck mysql-5.5.29]# make install
+
+
+8.检验是否安装成功
+
+
+
+
+复制代码代码如下:
+[root@zck mysql-5.5.29]# cd /usr/local/mysql/
+[root@zck mysql]# ls
+bin COPYING data docs include INSTALL-BINARY lib man mysql-test README scripts share sql-bench support-files
+
+
+有bin等以上文件的话，则说明成功安装mysql。
+
+二、配置mysql
+
+9.设置mysql目录权限
+
+
+
+复制代码代码如下:
+[root@zck mysql]# cd /usr/local/mysql //把当前目录中所有文件的所有者设为root，所属组为mysql
+[root@zck mysql]# chown -R root:mysql .
+[root@zck mysql]# chown -R mysql:mysql data
+
+
+10.将mysql的启动服务添加到系统服务中
+
+
+
+复制代码代码如下:
+[root@zck mysql]# cp support-files/my-medium.cnf /etc/my.cnf
+cp：是否覆盖"/etc/my.cnf"？ y
+
+
+11.创建系统数据库的表
+
+
+
+复制代码代码如下:
+[root@zck mysql]# cd /usr/local/mysql
+[root@zck mysql]# scripts/mysql_install_db --user=mysql
+
+
+12.设置环境变量
+
+
+
+复制代码代码如下:
+[root@zck ~]# vi /root/.bash_profile
+在修改PATH=$PATH:$HOME/bin为：
+PATH=$PATH:$HOME/bin:/usr/local/mysql/bin:/usr/local/mysql/lib
+[root@zck ~]# source /root/.bash_profile //使刚才的修改生效
+
+
+13.手动启动mysql
+
+
+
+复制代码代码如下:
+[root@zck ~]# cd /usr/local/mysql
+[root@zck mysql]# ./bin/mysqld_safe --user=mysql & //启动MySQL，但不能停止
+mysqladmin -u root -p shutdown //此时root还没密码，所以为空值，提示输入密码时，直接回车即可。
+
+
+14.将mysql的启动服务添加到系统服务中
+
+
+
+复制代码代码如下:
+[root@zck mysql]# cp support-files/mysql.server /etc/init.d/mysql
+
+
+15.启动mysql
+
+
+
+复制代码代码如下:
+[root@zck mysql]# service mysql start
+Starting MySQL... ERROR! The server quit without updating PID file (/usr/local/mysql/data/localhost.localdomain.pid).
+
+
+启动失败：
+我这里是权限问题，先改变权限
+[root@zck mysql]# chown -R mysql:mysql /usr/local/mysql
+
+接着启动服务器
+[root@zck mysql]# /etc/init.d/mysql start
+
+16.修改MySQL的root用户的密码以及打开远程连接
+
+
+
+
+复制代码代码如下:
+[root@zck mysql]# mysql -u root mysql
+mysql> use mysql;
+mysql> desc user;
+mysql> GRANT ALL PRIVILEGES ON *.* TO root@"%" IDENTIFIED BY "root"; //为root添加远程连接的能力
+mysql> update user set Password = password('123456') where User='root'; //设置root用户密码
+mysql> select Host,User,Password from user where User='root';
+mysql> flush privileges;
+mysql> exit
+
+
+17.重新登录
+
+
+
+复制代码代码如下:
+[root@zck mysql]# mysql -u root -p
+Enter password:123456
+
+
+若还不能进行远程连接，关闭防火墙
+
+
+
+复制代码代码如下:
+[root@zck]# /etc/rc.d/init.d/iptables stop
+来源： <http://www.jb51.net/os/RedHat/73026.html>
+
+
+
+注意问题 my.cnf
+The above link says default-character-set is depreciated and you should
+be   using  character-set-server. It also states default-character-set
+was removed in v5.5.3.
+http://lists.mysql.com/mysql/226319
+
+
+####################################mysql主从复制#################################
 1.确保主从的服务器上安装了相同的版本
-2.在主的服务器上，设置一个复制使用的账户，并授予replication slave权限
-grant replication slave on *.* to 'repl'@'%' identified by '123456';
-3.修改主数据库服务器的配置文件my.cnf，开启binlog,并设置server-id的值
+2.在主的服务器上，设置一个复制使用的账户，并授予replication slave权限。这里创建一个复制用户repl,可以从ip为
+192.168.1.101的主机进行连接：
+grant replication slave on *.* to 'repl'@'192.168.1.101' identified by '123456';
+3.修改主数据库服务器的配置文件my.cnf，开启binlog,并设置server-id的值。这两个参数的修改需要重新启动数据库服务
+才可以生效。
+my.cnf中修改：
 [mysqld]
 log-bin = mysql-bin.log
 server-id =1
-4.在主服务器上，设置读锁定有效，这个操作是为了确保没有数据库操作，一遍得到一个一致性的快照
+4.在主服务器上，设置读锁定有效，这个操作是为了确保没有数据库操作，以便获得一个一致性的快照
 flush tables with read lock;
 5.然后得到主服务器上当前的二进制日志名和偏移量值。这个操作的目的是为了在从数据库启动后，从这个点开始进行数据的恢复
-show master status;
+mysql> show master status;
++------------------+----------+--------------+------------------+
+| File             | Position | Binlog_Do_DB | Binlog_Ignore_DB |
++------------------+----------+--------------+------------------+
+| mysql-bin.000002 |      107 |              |                  | 
++------------------+----------+--------------+------------------+
+1 row in set (0.01 sec)
+
 6.现在主数据库服务器已经停止了更新操作，需要生成主数据库的备份，备份的方式有很多种，可以直接在操作系统下cp全部的数据
 文件到从数据库服务器上，也可以通过mysqldump导出数据或者ibbackup工具进行数据库的备份,这些备份操作的步骤已经在第27章中有
 详细的介绍，这里不再一一说明。如果主数据库的服务可以停止，那么直接cp数据文件应该是最快的生成快照的方法：
 tar zcvf data.tar.gz data
+7.主数据库的备份完毕后，主数据库可以恢复写操作，剩下的操作只需要在从服务器上执行
+unlock tables;
+8.将主数据库的一致性备份数据恢复到从数据库上。如果是使用.tar打包的文件包，只需要解开到相应的目录即可
+9.修改从数据库的配置文件my.cnf，增加server-id参数。注意server-id的值必须是唯一的，不能和主数据库的配置相同，如果有多个
+从数据库服务器，每个数据库服务器必须有自己的server-id值
+my.cnf中修改：
+[mysqld]
+server-id = 2
+10.在从服务器上，使用--skip-slave-start选项启动从数据库，这样不会立即启动数据库服务器上的复制进程，方便我们对从数据库的
+服务进行进一步的配置
+mysqld_safe --skip-slave-start &
+11.对从数据库服务器做相应的设置，指定复制使用的用户，主数据库服务器的ip、端口以及开始执行复制的日志文件和位置等，具体
+语法如下：
+change master to 
+master_host='master_host_name',
+master_user='replication_user_name',
+master_password='replication_password',
+master_log_file='recorded_log_file_name',
+master_log_pos=recorded_log_postion;
+举例说明如下：
+change master to
+master_host='192.168.1.100',
+master_port=3306,
+master_user='repl',
+master_password='123456',
+master_log_file='mysql-bin.000002',
+master_log_pos=107;
+12.在从服务器上，启动slave线程：
+start slave;
+13.这时slave上执行show processlist命令将显示类似如下进程：
+14.也可以测试复制服务的正确性，在主数据库上执行一个更新的操作，观察是否在从数据库上同步。在主数据库上test数据库创建一个
+测试表，插入数据：
+use test;
+show tables;
+create table repl_test(id int);
+insert into repl_test values(1),(2),(3),(4),(5);
+15.在从数据库上检查新表是否被创建，数据库是否同步：
+use test;
+show tables;
+select * from repl_test;
+可以看到数据可以正确同步到从服务器上，复制服务器配置成功完成。
+
+
 
