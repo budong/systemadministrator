@@ -335,4 +335,21 @@ select * from repl_test;
 可以看到数据可以正确同步到从服务器上，复制服务器配置成功完成。
 
 
+#########################切换主从服务器#################
+M 主
+S1 从1
+S2 从2
+1.首先确保所有的从数据库都已经执行relay log中的全部更新，在每个从服务器上，执行stop slave io_thread,然后检查
+show processlist的输出，知道看到状态是Has read all relay log,表示更新都执行完毕。
+2.在数据库s1上，执行stop slave停止从服务，然后reset master重置成主数据库。
+stop slave;
+reset master;
+3.在s2上，执行stop slave停止从服务，然后执行change master to master_host = 's1'重新设置主数据库，然后再执行
+start slave启动复制。
+stop slave;
+change master to master_host = '192.168.1.101';
+start slave;
+4.通知所有的客服端将应用指向s1，这样客户端发送的所有更新语法写入到s1的二进制日志。
+5.删除新的主数据库上的master.info和relay_log.info文件，否者在下次启动的时候还会按照从服务器启动。
+6.最后，若果M服务器可以修复，则可以按照s2的方法配置s1的从服务器
 
