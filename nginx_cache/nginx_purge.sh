@@ -100,3 +100,5 @@ function nginx_cache_inspect_item() {
 
 ## Inspect the specified cache item(s).
 nginx_cache_inspect_item $1 $2
+
+#see https://github.com/perusio/nginx-cache-inspector
