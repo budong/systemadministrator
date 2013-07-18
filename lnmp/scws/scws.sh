@@ -18,7 +18,7 @@ cd /root/src/scws-1.2.2/phpext/
 make && make install
 四：修改php.ini
 vi /usr/local/php_fpm/etc/php.ini
-extension = scws.so
+extension = "scws.so"
 scws.default.charset = gbk
 scws.default.fpath = /usr/local/scws/etc
 
