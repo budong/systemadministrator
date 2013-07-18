@@ -2,6 +2,7 @@ SCWS-1.2.2 安装说明
 一：安装scws
 wget http://www.xunsearch.com/scws/down/scws-1.2.2.tar.bz2
 tar jxvf scws-1.2.2.tar.bz2 
+cd scws-1.2.2
 ./configure --prefix=/usr/local/scws
 make && make install
 二: 用 wget 下载并解压词典，或从主页下载然后自行解压再将 *.xdb 放入 /usr/local/scws/etc 目录中
