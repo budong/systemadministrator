@@ -1,6 +1,6 @@
 SCWS-1.2.2 安装说明 
 一：安装scws
-wget http://www.ftphp.com/scws/down/scws-1.1.2.tar.bz2
+wget http://www.xunsearch.com/scws/down/scws-1.2.2.tar.bz2
 tar jxvf scws-1.2.2.tar.bz2 
 ./configure --prefix=/usr/local/scws
 make && make install
