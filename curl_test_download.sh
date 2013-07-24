@@ -6,10 +6,10 @@ total_count=0
 i=0
 code=200
 
-date_time=`date  +%Y-%m-%d`
+date_time=`date  +%Y-%m-%d___%H:%M:%S`
 
 while [[ $i -lt 100 ]];do
-    i=`expr $i + 1`
+    (( i++ ))
     for  ip in `cat /tmp/ip_list.txt`;do 
         for uri in `cat /tmp/url_list.txt`;do
             total_count=`expr $total_count + 1`

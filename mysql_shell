@@ -1,4 +1,5 @@
 1.新建数据库budong_db,授权budong使用budong_db所有权限
+CREATE DATABASE `budong_db` DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci;
 create database budong_db;
 grant all privileges on budong_db.* to 'budong'@'%' identified by '123456';
 只授予一部分权限
