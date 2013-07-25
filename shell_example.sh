@@ -12,5 +12,5 @@ HOUR=$(date "+%H")
 if [ ${HOUR} -eq "00" ]; then
         /usr/bin/rsync  -avzP $DIR_SRC $DIR_DST
 else
-        /usr/bin/rsync -avzRP  --files-from=$FILE_LIST $DIR_SRC $DIR_DST
+        /usr/bin/rsync -avzP  --files-from=$FILE_LIST $DIR_SRC $DIR_DST
 fi
