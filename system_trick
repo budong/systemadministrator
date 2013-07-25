@@ -1,0 +1,14 @@
+一：如何在64位系统上安装32位的软件
+举例如下：
+tar zxvf zlib-1.2.7.tar.gz
+cd zlib-1.2.7
+export CFLAGS=-m32
+./configure --prefix=/usr/local/zlib-1.2.7-32
+make && make install
+
+验证：
+[root@budong src]# file /usr/local/zlib-1.2.7-32/lib/libz.so.1.2.7
+/usr/local/zlib-1.2.7-32/lib/libz.so.1.2.7: ELF 32-bit LSB shared object, Intel 80386, version 1 (SYSV), not stripped
+
+
+参考资料：http://stackoverflow.com/questions/1272357/how-to-compile-a-32-bit-binary-on-a-64-bit-linux-machine-with-gcc-cmake
