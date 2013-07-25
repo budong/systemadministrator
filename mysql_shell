@@ -27,3 +27,9 @@ mysql -u root mysql
 use mysql;
 UPDATE user SET password=PASSWORD("new password") WHERE user='root';
 FLUSH PRIVILEGES;
+
+6.mysql主从错误
+stop slave; 
+set global sql_slave_skip_counter=1;
+slave start;
+
