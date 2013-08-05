@@ -7,6 +7,7 @@ i=0
 code=200
 
 date_time=`date  +%Y-%m-%d___%H:%M:%S`
+time=`date +%Y-%m-%d:%H:%M`
 
 while [[ $i -lt 100 ]];do
     (( i++ ))
@@ -15,12 +16,12 @@ while [[ $i -lt 100 ]];do
             total_count=`expr $total_count + 1`
             b=`curl -I $uri -s -x $ip:80 | head -1 | gawk '{print$2}'`
             if [[ $b -ne $code ]];then
-                time=`date +%Y-%m-%d:%H:%M`
+                #time=`date +%Y-%m-%d:%H:%M`
                 echo $time -- $ip -- $uri  >> /tmp/failure_$date_time.log
                 curl -I $uri -s -x $ip:80 >> /tmp/failure_$date_time.log
                 failure_count=`expr $failure_count + 1`
             else
-                time=`date +%Y-%m-%d:%H:%M`
+                #time=`date +%Y-%m-%d:%H:%M`
                 echo $time -- $ip --  $uri  >> /tmp/success_$date_time.log
                 curl -I $uri -s -x $ip:80 >> /tmp/success_$date_time.log
                 success_count=`expr $success_count + 1`
