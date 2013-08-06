@@ -9,8 +9,8 @@ code=200
 date_time=`date  +%Y-%m-%d___%H:%M:%S`
 time=`date +%Y-%m-%d:%H:%M`
 
-while [[ $i -lt 100 ]];do
-    (( i++ ))
+#while [[ $i -lt 1 ]];do
+#    (( i++ ))
     for  ip in `cat /tmp/ip_list.txt`;do 
         for uri in `cat /tmp/url_list.txt`;do
             total_count=`expr $total_count + 1`
@@ -28,7 +28,7 @@ while [[ $i -lt 100 ]];do
             fi  
         done
     done
-done
+#done
 echo "总测试次数" $total_count >>  /tmp/info_$date_time.log
 echo "成功的次数" $success_count  >>  /tmp/info_$date_time.log
 echo "失败的次数" $failure_count >>  /tmp/info_$date_time.log
