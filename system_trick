@@ -12,3 +12,15 @@ make && make install
 
 
 参考资料：http://stackoverflow.com/questions/1272357/how-to-compile-a-32-bit-binary-on-a-64-bit-linux-machine-with-gcc-cmake
+
+二：装完系统后，如果分区错误，可以
+1.重新分区
+fdisk /dev/sda
+2.设置新的卷标
+e2label /dev/hdax /new 
+mkdir /new 
+然后在/etc/fstab 里加入：
+label=/new  /new  ext3  defaults  1 1 
+
+三：查看开机启动项
+ntsysv 
