@@ -16,4 +16,4 @@ else
 fi
 
 查看一个文件夹做大的文件
-ls -l|awk '{print $5, $8}'|sort -rn|head -1
+ls -S|head -1
