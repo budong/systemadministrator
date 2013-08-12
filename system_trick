@@ -24,3 +24,14 @@ label=/new  /new  ext3  defaults  1 1
 
 三：查看开机启动项
 ntsysv 
+
+四：今天装完系统发现后发现没有swap分区，坑爹的机房技术,处理如下
+1.建立一个大文件,供交换分区用
+dd if=/dev/zero of=/data/swap bs=1M count=10240
+2.创建（设置）交换空间，使用命令mkswap
+mkswap /data/swap
+3.启动新增加的10G的交换空间，使用命令swapon
+swapon /data/swap
+4,修改/etc/fstab文件，使得新加的10G交换空间在系统重新启动后自动生效
+vim /etc/fstab
+/data/swap              swap                    swap    defaults        0 0
