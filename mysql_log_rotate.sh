@@ -1,6 +1,8 @@
 系统日志轮换的配置文件
 /etc/syslog.conf
 /etc/logrotate.conf
+/etc/logrotate.d/
+/etc/init.d/syslog restart
 具体参见源码包：
 support-files/mysql-log-rotate.sh
 
