@@ -16,7 +16,7 @@ support-files/mysql-log-rotate.sh
     if test -x /usr/local/mysql/bin/mysqladmin && \
        /usr/local/mysql/bin/mysqladmin -uroot -pbudong ping &>/dev/null
     then
-       /usr/local/mysql/bin/mysqladmin -uroot -pbudong -e "flush logs"
+       /usr/local/mysql/bin/mysql -uroot -pbudong -e "flush logs"
     fi
     endscript
 }
@@ -32,7 +32,7 @@ support-files/mysql-log-rotate.sh
     if test -x /usr/local/mysql/bin/mysqladmin && \
        /usr/local/mysql/bin/mysqladmin -uroot -pbudong ping &>/dev/null
     then
-       /usr/local/mysql/bin/mysqladmin -uroot -pbudong -e "flush logs"
+       /usr/local/mysql/bin/mysql -uroot -pbudong -e "flush logs"
     fi
     endscript
 }
