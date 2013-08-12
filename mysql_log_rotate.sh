@@ -1,3 +1,6 @@
+系统日志轮换的配置文件
+/etc/syslog.conf
+/etc/logrotate.conf
 具体参见源码包：
 support-files/mysql-log-rotate.sh
 
