@@ -3,6 +3,7 @@
 /etc/logrotate.conf
 /etc/logrotate.d/
 /etc/init.d/syslog restart
+daily
 具体参见源码包：
 support-files/mysql-log-rotate.sh
 
