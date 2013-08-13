@@ -35,3 +35,6 @@ swapon /data/swap
 4,修改/etc/fstab文件，使得新加的10G交换空间在系统重新启动后自动生效
 vim /etc/fstab
 /data/swap              swap                    swap    defaults        0 0
+
+五：查看系统进程使用的cpu
+ps -eo psr,comm
