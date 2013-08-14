@@ -38,3 +38,6 @@ vim /etc/fstab
 
 五：查看系统进程使用的cpu
 ps -eo psr,comm
+
+六：查看nginx并发数
+netstat -n | awk '/^tcp/ {++S[$NF]} END {for(a in S) print a, S[a]}'
