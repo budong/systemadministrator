@@ -41,3 +41,6 @@ ps -eo psr,comm
 
 六：查看nginx并发数
 netstat -n | awk '/^tcp/ {++S[$NF]} END {for(a in S) print a, S[a]}'
+
+七：强制杀所有nginx进程
+ps aux | grep nginx | grep -v grep | awk '{print $2}' | xargs kill -9
