@@ -21,6 +21,7 @@ e2label /dev/hdax /new
 mkdir /new 
 然后在/etc/fstab 里加入：
 label=/new  /new  ext3  defaults  1 1 
+mount -L /new /new
 
 三：查看开机启动项
 ntsysv 
