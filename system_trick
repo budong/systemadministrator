@@ -52,3 +52,6 @@ ps aux | grep nginx | grep -v grep | awk '{print $2}' | xargs kill -9
 八：添加一条路由
 route add default gw 172.16.228.1
 route add -net 192.168.228.0/24 gw 172.16.228.1
+
+九：既然还有iotop这个东西，好动西
+yum -y install iotop
