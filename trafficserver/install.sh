@@ -3,19 +3,15 @@
 yum install gcc-c++ openssl-devel tcl-devel expat-devel pcre-devel make
 
 # Get traffic server
-wget http://apache.tradebit.com/pub/trafficserver/trafficserver-3.1.3-unstable.tar.bz2
-tar -xf trafficserver-3.1.3-unstable.tar.bz2
-cd trafficserver-3.1.3-unstable
+wget http://mirror.bit.edu.cn/apache/trafficserver/trafficserver-3.2.5.tar.bz2
+tar -jxvf trafficserver-3.2.5.tar.bz2
+cd trafficserver-3.2.5
 
 # Build traffic server
-./configure
-make -j 8
+./configure  --prefix=/usr/local/trafficserver --with-user=www --with-group=www
 
 # Install traffic server
-make install
-ln -s /usr/local/bin/trafficserver /etc/init.d/trafficserver
-chkconfig --add trafficserver
-chkconfig trafficserver on
+make && make install
 
 # Configure traffic server URL map
 echo "map http://YOURDOMAIN.COM http://localhost" >> /usr/local/etc/trafficserver/remap.config
