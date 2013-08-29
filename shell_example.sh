@@ -17,3 +17,6 @@ fi
 
 查看一个文件夹做大的文件
 ls -S|head -1
+
+统计nginx下载软件的前十
+cat apk.a.log | awk '{print $7}' | sort | uniq -c | sort -rn | head -10
