@@ -1,0 +1,13 @@
+2.安装PHP
+
+# wget http://cn2.php.net/distributions/php-5.4.13.tar.bz2
+
+# tar -jxvf php-5.4.13.tar.bz2
+
+# cd php-5.4.13
+
+此处编译安装了我们项目经常用到的PHP模块,如有其它需要可以自定义添加.
+
+# ./configure --prefix=/usr/local/php5 --with-apxs2=/usr/local/apache2/bin/apxs --with-libxml-dir=/usr/local/lib --with-zlib-dir=/usr/local/lib --with-mysql=/usr/local/mysql --with-mysqli=/usr/local/mysql/bin/mysql_config --with-gd --enable-soap --enable-sockets  --enable-xml --enable-mbstring --with-png-dir=/usr/local --with-jpeg-dir=/usr/local --with-curl=/usr/lib --with-freetype-dir=/usr/include/freetype2/freetype/ --enable-bcmath --enable-calendar --enable-zip --enable-maintainer-zts
+
+# 注:其中最后一个参数--enable-maintainer-zts在安装PHP5.4最新版本时必须添加(5.3貌似不需要),表示打开PHP进程安全Thread Safe,默认不添加为NON Thread Safe,开启apache服务会报错.....(此处被坑了一下午...#$%^&*)

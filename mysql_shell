@@ -34,4 +34,5 @@ set global sql_slave_skip_counter=1;
 slave start;
 修改/etc/my.cnf
 slave_skip_errors=1690
+slave-skip-errors = 1690,1062,1701
 
