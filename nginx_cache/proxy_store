@@ -1,0 +1,13 @@
+location /{
+    root /data/cache
+    error_page 404 = @fetch
+}
+
+location @fetch {
+    internal;
+    proxy_pass http://backend;
+    proxy_store on;
+    proxy_store_access user:rw group:rw all:r;
+    proxy_temp_path /data/temp;
+    root /data/cache;
+}
