@@ -36,3 +36,10 @@ slave start;
 slave_skip_errors=1690
 slave-skip-errors = 1690,1062,1701
 
+7.mysql 优化
+key_buffer_size 索引缓存,查看书否够用 Key_blocks_unused 
+table_cache 打开表的缓存数量，参照 show global status like 'open_tables';
+
+8.备份恢复所有的数据库
+mysqldump -uroot -p --all-databases > alldb.sql
+mysql -u root -p < alldb.sql

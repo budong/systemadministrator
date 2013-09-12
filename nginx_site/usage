@@ -2,3 +2,5 @@
 /usr/local/nginx/sbin/nginx -c /usr/local/nginx/conf/nginx.conf
 2.强制停止所有Nginx进程
 pkill -9 nginx
+
+add_header Load-Balancing $server_addr;
