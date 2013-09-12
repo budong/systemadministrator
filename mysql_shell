@@ -43,3 +43,8 @@ table_cache 打开表的缓存数量，参照 show global status like 'open_tabl
 8.备份恢复所有的数据库
 mysqldump -uroot -p --all-databases > alldb.sql
 mysql -u root -p < alldb.sql
+
+innobackupex --user=root --password=budong --defaults-file=/etc/my.cnf /data/data_bak/
+innobackupex --defaults-file=/etc/my.cnf --user=root --password=budong --apply-log   /data/data_bak/2011-12-11_18-50-55 
+innobackupex --defaults-file=/etc/my.cnf --user=root --password=budong --copy-back   /data/data_bak/2011-12-11_18-50-55 
+chown mysql:mysql /data/mysql_db/
