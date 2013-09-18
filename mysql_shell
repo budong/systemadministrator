@@ -48,3 +48,17 @@ innobackupex --user=root --password=budong --defaults-file=/etc/my.cnf /data/dat
 innobackupex --defaults-file=/etc/my.cnf --user=root --password=budong --apply-log   /data/data_bak/2011-12-11_18-50-55 
 innobackupex --defaults-file=/etc/my.cnf --user=root --password=budong --copy-back   /data/data_bak/2011-12-11_18-50-55 
 chown mysql:mysql /data/mysql_db/
+
+8.mysiam 查看key_buffer_size是否够用
+mysql> show global status like 'key%';
++------------------------+------------+
+| Variable_name          | Value      |
++------------------------+------------+
+| Key_blocks_not_flushed | 0          |
+| Key_blocks_unused      | 261564     |
+| Key_blocks_used        | 1453172    |
+| Key_read_requests      | 2437433810 |
+| Key_reads              | 3306925    |
+| Key_write_requests     | 11545727   |
+| Key_writes             | 8712678    |
++------------------------+------------+
