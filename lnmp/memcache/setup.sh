@@ -1,4 +1,5 @@
 #!/bin/sh
+#http://memcached.org
 tar zxf libevent-1.4.13-stable.tar.gz
 cd libevent-1.4.13-stable
 ./configure
