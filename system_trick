@@ -55,3 +55,6 @@ route add -net 192.168.228.0/24 gw 172.16.228.1
 
 九：既然还有iotop这个东西，好动西
 yum -y install iotop
+
+十：切换用户身份执行脚本
+su - www -c "/usr/local/php/bin/php /data/google/index.php" > /dev/null 2>&1 &
