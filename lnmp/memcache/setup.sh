@@ -14,3 +14,6 @@ cd ..
 echo "/usr/local/lib" >> /etc/ld.so.conf
 ldconfig
 /usr/local/memcached/bin/memcached -d -m 20 -u root -l 127.0.0.1 -p 11211
+
+python 接口
+pip install python-memcached
