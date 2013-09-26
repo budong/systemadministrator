@@ -62,3 +62,10 @@ mysql> show global status like 'key%';
 | Key_write_requests     | 11545727   |
 | Key_writes             | 8712678    |
 +------------------------+------------+
+
+9.查看mysql编译参数
+cat /usr/local/mysql/bin/mysqlbug | grep CONFIGURE_LINE
+
+10.建表时加引擎
+CREATE TABLE t (i INT) ENGINE = INNODB;
+CREATE TABLE t (i INT) TYPE = MEMORY;
