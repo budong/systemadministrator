@@ -96,3 +96,35 @@ alter table index18 add spatial index index18_line(line);
 
 drop index index_name on table_name;
 drop index id on index1;
+
+12,表的基本操作
+create table example1(stu_id int primary key,stu_name varchar(20),stu_sex boolean);
+create table example2(stu_id int,course_id int,grade float,primary key(stu_id,course_id));
+create table example3(id int primary key,stu_id int,course_id int,constraint c_fk foreign key(stu_id,course_id) references example2(stu_id,course_id));
+
+alter table old_table_name rename new_table_name;
+alter table example7 rename new_example7;
+
+alter table 表名 modify 属性名 数据类型;
+alter table new_example7 modify e char(30);
+
+alter table 表名 change 旧属性名 新属性名 新数据类型；
+alter table new_example7 change e en char(30);
+
+alter table 表名 add 属性名1 数据类型 [完整性约束条件] [first| after 属性名2];
+alter table new_example7 add phone varchar(20);
+
+alter table 表名 drop 属性名；
+alter table example7 drop num;
+
+alter table 表名 modify 属性名1 数据类型 first|after 属性名2；
+alter table example7 modify age int(4) after id;
+
+alter table 表名 engine=存储引擎；
+alter table user engine=myisam;
+
+alter table 表名 drop foreign key 外键别名；
+alter table example3 drop foreign key c_fk;
+
+drop table table_name;
+delete from table_name where ...;
