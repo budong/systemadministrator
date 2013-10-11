@@ -67,5 +67,32 @@ mysql> show global status like 'key%';
 cat /usr/local/mysql/bin/mysqlbug | grep CONFIGURE_LINE
 
 10.建表时加引擎
-CREATE TABLE t (i INT) ENGINE = INNODB;
+CREATE TABLE t (i INT) ENGINE = INNODB DEFAULT CHARSET=utf8;
 CREATE TABLE t (i INT) TYPE = MEMORY;
+
+11,建表时加索引
+create table index1(id int,name varchar(20),sex boolean, index(id));
+create table index2(id int unique,name varchar(20),unique index index2_id(id asc));
+create table index3(id int,info varchar(20),fulltext index index_info(info)) ENGINE = MYISAM ;
+create table index4(id int,subject varchar(30),index index4_st (subject(10)));
+create table index5(id int,name varchar(20),sex char(4),index index5_ns(name,sex));
+create table index6(id int,space geometry not null,spatial index index6_sp(space)) engine=myisam;
+
+create table example0(id int(11) default null,name varchar(20) default null,sex tinyint default null);
+create index index7_id on example0(id);
+
+create unique index index8_id on index8(course_id);
+create fulltext index index9_info on index9(info);
+create index index10_addr on index10(address(4));
+create index index11_na on index11(name,address);
+create spatial index index12_line on index12(line);
+
+alter table index11 add index index13_name(name(2));
+alter table index14 add unique index index14_id(course_id);
+alter table index15 add fulltext index index15_info(info);
+alter table index16 add index index16_addr(address(4));
+alter table index17 add index index17_na(name,address);
+alter table index18 add spatial index index18_line(line);
+
+drop index index_name on table_name;
+drop index id on index1;
