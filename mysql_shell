@@ -128,3 +128,18 @@ alter table example3 drop foreign key c_fk;
 
 drop table table_name;
 delete from table_name where ...;
+
+my.cnf
+wait_timeout=3600
+set global wait_timeout=3600;
+show global variables like 'wait_timeout';
+
+外键：
+Create Table: CREATE TABLE `books` (
+  `id` int(11) NOT NULL DEFAULT '0',
+  `bookname` varchar(10) DEFAULT NULL,
+  `userid` int(11) DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `fk_userid_id` (`userid`),
+  CONSTRAINT `fk_userid_id` FOREIGN KEY (`userid`) REFERENCES `users` (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8
