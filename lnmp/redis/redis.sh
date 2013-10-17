@@ -1,5 +1,6 @@
 #!/bin/sh
 
+#https://github.com/nicolasff/phpredis
 一：安装
 wget --no-check-certificate http://github.com/owlient/phpredis/tarball/master -O phpredis.tar.gz
 tar zxvf phpredis.tar.gz

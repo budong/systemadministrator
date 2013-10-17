@@ -143,3 +143,23 @@ Create Table: CREATE TABLE `books` (
   KEY `fk_userid_id` (`userid`),
   CONSTRAINT `fk_userid_id` FOREIGN KEY (`userid`) REFERENCES `users` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8
+
+
+查看索引的使用情况：
+show status like 'Handler_read%';
+
+插入大量数据时(myisam)：
+alter table sales disable keys;
+load the data
+alter table sales enable keys;
+
+优化group by 禁止排序：
+explain select year,sum(profit) from sales group by year order by null\G
+
+查询时是不是用索引：
+explain select * from sales use index(y)  where year=2000 \G
+explain select * from sales ignore index(y)  where year=2000 \G
+explain select * from sales force index(y)  where year=2000 \G
+
+分析一下表的数据类型：
+select * from sales procedure analyse()\G
