@@ -163,3 +163,6 @@ explain select * from sales force index(y)  where year=2000 \G
 
 分析一下表的数据类型：
 select * from sales procedure analyse()\G
+
+查看mysql的参数信息：
+mysqld --verbose --help | more
