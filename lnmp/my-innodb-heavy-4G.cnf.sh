@@ -45,6 +45,7 @@ default-character-set = utf8
 # generic configuration options
 port		= 3306
 socket		= /tmp/mysql.sock
+basedir     = /usr/local/mysql
 datadir     = /data/mysql_db
 
 # back_log is the number of connections the operating system can keep in
