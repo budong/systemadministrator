@@ -166,3 +166,9 @@ select * from sales procedure analyse()\G
 
 查看mysql的参数信息：
 mysqld --verbose --help | more
+
+获取innodb行锁争用情况
+show status like 'innodb_row_lock%';
+
+查看innodb表状态
+show table status from db_name like 'table_name'\G
