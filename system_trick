@@ -58,3 +58,6 @@ yum -y install iotop
 
 十：切换用户身份执行脚本
 su - www -c "/usr/local/php/bin/php /data/google/index.php" > /dev/null 2>&1 &
+
+十一：查看服务器硬件信息
+dmidecode -t system
