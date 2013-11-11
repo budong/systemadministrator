@@ -172,3 +172,11 @@ show status like 'innodb_row_lock%';
 
 查看innodb表状态
 show table status from db_name like 'table_name'\G
+
+
+数据库转引擎：
+1.修改脚本
+vim /usr/local/mysql/bin/mysql_convert_table_format
+$opt_engine="INNODB";
+2.转换引擎
+/usr/local/mysql/bin/mysql_convert_table_format budongdb --user=root --password=mumayi --socket=/tmp/mysql.sock  
