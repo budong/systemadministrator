@@ -202,4 +202,5 @@ chmod a+x /etc/init.d/mysqld_multi.server.sh
 /etc/init.d/mysqld_multi.server.sh start 1-2
 
 查看mysql binlog日志内容：
+row-based的格式，默认情况下只能看到一些经过base-64编码的信息
 /usr/local/mysql/bin/mysqlbinlog --no-defaults -vv mysql-bin.000044 >/tmp/bin.sql
