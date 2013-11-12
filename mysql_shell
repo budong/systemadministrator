@@ -200,3 +200,6 @@ mysqld_multi --example
 cp support-files/mysqld_multi.server.sh /etc/init.d/
 chmod a+x /etc/init.d/mysqld_multi.server.sh
 /etc/init.d/mysqld_multi.server.sh start 1-2
+
+查看mysql binlog日志内容：
+/usr/local/mysql/bin/mysqlbinlog --no-defaults -vv mysql-bin.000044 >/tmp/bin.sql
