@@ -192,3 +192,11 @@ pt-online-schema-change -h localhost -u root -p mumayi --alter="add index index_
 pt-online-schema-change -h localhost -u root -p mumayi --alter="add phone varchar(255)" --execute D=budong,t=budong
 删除一个字段：
 pt-online-schema-change -h localhost -u root -p mumayi --alter="drop phone" --execute D=budong,t=budong
+
+
+单机多个mysql实例：
+查资料呀：
+mysqld_multi --example
+cp support-files/mysqld_multi.server.sh /etc/init.d/
+chmod a+x /etc/init.d/mysqld_multi.server.sh
+/etc/init.d/mysqld_multi.server.sh start 1-2
