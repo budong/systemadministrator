@@ -208,3 +208,18 @@ row-based的格式，默认情况下只能看到一些经过base-64编码的信�
 mysql主从停止io和sql线程：
 stop slave io_thread;
 stop slave sql_thread;
+
+修改mysql数据库密码：
+UPDATE mysql.user SET Password=PASSWORD('newpwd') WHERE User='root';
+FLUSH PRIVILEGES;
+
+mysql安全使用mysql用户来运行：
+[mysqld]
+user=mysql
+
+禁用索引，启用索引：
+alter table hit_counter disable keys;
+alter table hit_counter enable keys;
+
+检查重复索引：
+pt-duplicate-key-checker --host=localhost --user=root --password=password --database=db_name
