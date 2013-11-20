@@ -223,3 +223,6 @@ alter table hit_counter enable keys;
 
 检查重复索引：
 pt-duplicate-key-checker --host=localhost --user=root --password=password --database=db_name
+
+查看mysql数据库的信息汇总:
+pt-mysql-summary --host=localhost --user=root --password=mumayi
