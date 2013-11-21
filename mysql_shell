@@ -226,3 +226,6 @@ pt-duplicate-key-checker --host=localhost --user=root --password=password --data
 
 查看mysql数据库的信息汇总:
 pt-mysql-summary --host=localhost --user=root --password=mumayi
+
+检测数据库死锁：
+pt-deadlock-logger --user=root --password=mumayi h=localhost
