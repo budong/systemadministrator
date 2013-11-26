@@ -61,3 +61,6 @@ su - www -c "/usr/local/php/bin/php /data/google/index.php" > /dev/null 2>&1 &
 
 十一：查看服务器硬件信息
 dmidecode -t system
+
+十二：查看最消耗cpu的进程在看吗
+Try using strace -p 26721 to see what the process is doing. To see which file handle is which use lsof -p 26721
