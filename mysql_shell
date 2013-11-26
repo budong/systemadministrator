@@ -229,3 +229,12 @@ pt-mysql-summary --host=localhost --user=root --password=mumayi
 
 检测数据库死锁：
 pt-deadlock-logger --user=root --password=mumayi h=localhost
+
+检测数据库外键错误：
+pt-fk-error-logger --host=localhost --user=root --password=mumayi D=budong,t=budong
+
+查看show global status信息：
+pt-mext -r -- mysqladmin ext --user=root --password=mumayi  -i10 -c3
+
+比较mysql配置文件的差异：
+pt-config-diff my-innodb-heavy-4G.cnf.sh /home/mysql/my.cnf
