@@ -238,3 +238,7 @@ pt-mext -r -- mysqladmin ext --user=root --password=mumayi  -i10 -c3
 
 比较mysql配置文件的差异：
 pt-config-diff my-innodb-heavy-4G.cnf.sh /home/mysql/my.cnf
+
+
+找到什么干些什么：
+pt-find --host=localhost --user=root --password=mumayi --ctime +1 --engine MyISAM
