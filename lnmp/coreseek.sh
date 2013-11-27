@@ -1,4 +1,5 @@
 #!/bin/sh
+#http://www.coreseek.cn/products-install/install_on_bsd_linux/
 tar zxvf coreseek-3.2.13.tar.gz
 cd coreseek-3.2.13/mmseg-3.2.13
 ./bootstrap
