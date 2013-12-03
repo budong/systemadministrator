@@ -64,3 +64,6 @@ dmidecode -t system
 
 十二：查看最消耗cpu的进程在看吗
 Try using strace -p 26721 to see what the process is doing. To see which file handle is which use lsof -p 26721
+
+十三：监控系统目录啊
+inotifywait -m -r -d -o /data/logs/inotifywait.log --timefmt '%F %T' --format '%T %w%f %e' --exclude=\.log -e close_write -e create -e modify /data/html/bbs.mumayi.net/ &

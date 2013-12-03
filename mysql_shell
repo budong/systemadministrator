@@ -249,3 +249,6 @@ select * from information_schema.processlist where command="Query";
 
 查看mysql slave tree:
 pt-slave-find --host=localhost --user=root --password=mumayi
+
+查看mysql复制错误，重启slave
+pt-slave-restart S=/home/mysql/tmp/mysql.sock --user=root --password=mumayi
