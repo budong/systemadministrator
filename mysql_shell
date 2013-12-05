@@ -252,3 +252,22 @@ pt-slave-find --host=localhost --user=root --password=mumayi
 
 查看mysql复制错误，重启slave
 pt-slave-restart S=/home/mysql/tmp/mysql.sock --user=root --password=mumayi
+
+
+查看QPS,TPS:
+mysqladmin -uroot -p  extended-status -i1 | awk 'BEGIN {switch=0;print "QPS   Commit Rollback   TPS    Threads_con Threads_run \n------------------------------------------------------- "}  
+    $2 ~ /Queries$/            {q=$4-lq;lq=$4;}  
+    $2 ~ /Com_commit$/         {c=$4-lc;lc=$4;}  
+    $2 ~ /Com_rollback$/       {r=$4-lr;lr=$4;}  
+    $2 ~ /Threads_connected$/  {tc=$4;}  
+    $2 ~ /Threads_running$/    {tr=$4;if(switch==0) switch=1; else printf "%-6d %-8d %-7d %-8d %-10d %d \n", q,c,r,c+r,tc,tr;}'
+
+
+
+innotop:
+yum -y install innotop
+
+
+禁用查询缓存：
+http://dev.mysql.com/doc/refman/5.0/en/query-cache-in-select.html
+sql_no_cache
