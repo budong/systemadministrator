@@ -271,3 +271,6 @@ yum -y install innotop
 禁用查询缓存：
 http://dev.mysql.com/doc/refman/5.0/en/query-cache-in-select.html
 sql_no_cache
+
+mysqlbinlog --no-defaults --base64-output=decode-rows -v -v
+
