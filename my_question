@@ -1,0 +1,3 @@
+1.nfs 挂载的问题 (区别)
+/bin/mount -o nolock 172.16.228.206:/data/app/3g /mnt/app/3g
+mount -t nfs -o nolock 192.168.137.10:/tmp/ /test/

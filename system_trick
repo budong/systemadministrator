@@ -70,3 +70,8 @@ inotifywait -m -r -d -o /data/logs/inotifywait.log --timefmt '%F %T' --format '%
 
 十四：计入单系统模式要文件时需要这个
 mount / -o rw,remount
+
+十五：top查看线程
+top -H
+iptables配置文件：
+/etc/sysconfig/iptables

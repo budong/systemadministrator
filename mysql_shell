@@ -274,3 +274,17 @@ sql_no_cache
 
 mysqlbinlog --no-defaults --base64-output=decode-rows -v -v
 
+
+改密码又学习到了：
+有用户'budong'@'localhost',想加用户'budong'@'192.168.1.49'，但是不知道'budong'@'localhost'密码
+grant all privileges on peiqiang.* to 'budong'@'localhost' identified by 'budong';
+mysql> show grants for budong@'localhost';
++---------------------------------------------------------------------------------------------------------------+
+| Grants for budong@localhost                                                                                   |
++---------------------------------------------------------------------------------------------------------------+
+| GRANT USAGE ON *.* TO 'budong'@'localhost' IDENTIFIED BY PASSWORD '*55B03F86B8D86AA17D388568518552D1320B2F76' | 
+| GRANT ALL PRIVILEGES ON `peiqiang`.* TO 'budong'@'localhost'                                                  | 
+| GRANT ALL PRIVILEGES ON `budong_db`.* TO 'budong'@'localhost'                                                 | 
++---------------------------------------------------------------------------------------------------------------+
+grant all privileges on peiqiang.* to 'budong'@'192.168.1.49' identified by PASSWORD '*55B03F86B8D86AA17D388568518552D1320B2F76';
+
