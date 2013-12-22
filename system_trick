@@ -75,3 +75,21 @@ mount / -o rw,remount
 top -H
 iptables配置文件：
 /etc/sysconfig/iptables
+
+十六： yum下载rpm包但是不安装 
+配置yum之后，可以很容易的安装软件，但是，如果只是想下载软件包，必须安装 yum-downloadonly
+# 安装yum-downloadonly
+[root@localhost opt]# yum install yum-downloadonly
+...
+
+#  下载httpd 包，包曾经下载过，所以不能用update ，若没有--doanloaddir参数设置，表示下载到默认目录
+# /var/cache/yum 
+[root@localhost opt]# yum update httpd --downloadonly --downloaddir=/
+Loaded plugins: downloadonly, fastestmirror
+Loading mirror speeds from cached hostfile
+Setting up Update Process
+Package(s) httpd available, but not installed.
+No Packages marked for Update
+
+#  下载httpd 包，包曾经下载过，用install , -y参数表示在下载过程所有的提问都以yes回答
+[root@localhost opt]# yum install httpd -y --downloadonly --downloaddir=/

@@ -36,3 +36,5 @@ done < /root/sbin/soft_bak
 vim soft_bak
 /data/mumayi/soft/2013/03/14/29/292928/linghuntanceqi_V1.3.0_mumayi_8c2f0.apk
 /data/mumayi/soft/2013/03/08/29/290117/zhongguotushuguan_V3.1_mumayi_80a5a.apk
+
+nginxpid=`ps -C nginx --no-header | wc -l`
