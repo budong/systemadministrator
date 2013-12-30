@@ -1,0 +1,6 @@
+vim php-fpm.conf
+listen = /dev/shm/php-fpm.sock;
+
+vim /usr/local/nginx/conf/fastcgi_params
+fastcgi_pass   unix:/dev/shm/php-fpm.sock;
+

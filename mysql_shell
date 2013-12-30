@@ -288,3 +288,6 @@ mysql> show grants for budong@'localhost';
 +---------------------------------------------------------------------------------------------------------------+
 grant all privileges on peiqiang.* to 'budong'@'192.168.1.49' identified by PASSWORD '*55B03F86B8D86AA17D388568518552D1320B2F76';
 
+
+mysql 中less
+pager less
