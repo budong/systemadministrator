@@ -1,0 +1,4 @@
+ipvsadm -L -c -n|awk '{print $4}'|awk -F: '{print $1}'|sort -n|uniq -c |sort -n|tail -10
+iptables -I INPUT  -p tcp -s ip  -j DROP
+
+ipvsadm -L -c -n|awk '{print $4}'|awk -F ':' '{print $1}'|sort|uniq -c|sort -rn|head -10
