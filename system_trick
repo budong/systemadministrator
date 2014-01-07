@@ -93,3 +93,12 @@ No Packages marked for Update
 
 #  下载httpd 包，包曾经下载过，用install , -y参数表示在下载过程所有的提问都以yes回答
 [root@localhost opt]# yum install httpd -y --downloadonly --downloaddir=/
+
+
+十七：查看磁盘卷标
+e2label /dev/hda3
+能查看
+
+e2label /dev/hda3 your_label
+能修改
+
