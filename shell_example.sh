@@ -38,3 +38,5 @@ vim soft_bak
 /data/mumayi/soft/2013/03/08/29/290117/zhongguotushuguan_V3.1_mumayi_80a5a.apk
 
 nginxpid=`ps -C nginx --no-header | wc -l`
+
+tcpdump host 192.168.245.131 -s0 -w lvs_m.pcap
