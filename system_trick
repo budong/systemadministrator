@@ -68,7 +68,7 @@ Try using strace -p 26721 to see what the process is doing. To see which file ha
 十三：监控系统目录啊
 inotifywait -m -r -d -o /data/logs/inotifywait.log --timefmt '%F %T' --format '%T %w%f %e' --exclude=\.log -e close_write -e create -e modify /data/html/bbs.mumayi.net/ &
 
-十四：计入单系统模式要文件时需要这个
+十四：进入单用户模式要文件时需要这个
 mount / -o rw,remount
 
 十五：top查看线程
