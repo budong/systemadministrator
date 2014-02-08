@@ -44,11 +44,13 @@ svnserve -d -r /data/svn/
 svn checkout svn://ip/repos
 
 五：svn钩子（仓库的代码直接同步到网站根目录）
+a.
+cd /data/html
+svn checkout svn://192.168.1.49/repo .
+b.
 cat /data/svndata/php/hooks/post-commit
-
 #!/bin/sh
 SVN=/usr/bin/svn
 WEB=/data/html
 export LANG=en_US.UTF-8
 $SVN update $WEB --username budong --password 16yOeEb0
-
