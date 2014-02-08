@@ -188,6 +188,7 @@ ft_min_word_len = 4
 # Table type which is used by default when creating new tables, if not
 # specified differently during the CREATE TABLE statement.
 default-storage-engine = INNODB
+#default-storage-engine = MYISAM
 
 # Thread stack size to use. This amount of memory is always reserved at
 # connection time. MySQL itself usually needs no more than 64K of
@@ -204,7 +205,7 @@ transaction_isolation = READ-COMMITTED
 # grows larger than this value, it is automatically converted to disk
 # based table This limitation is for a single table. There can be many
 # of them.
-tmp_table_size = 256M
+tmp_table_size = 512M
 
 # Enable binary logging. This is required for acting as a MASTER in a
 # replication configuration. You also need the binary log if you need
