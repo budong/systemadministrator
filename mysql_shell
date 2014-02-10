@@ -295,3 +295,6 @@ pager less
 
 查看mysql支持的字符集：
 show charset;
+
+mysql 5.5编译包含所有的字符集：
+-DWITH_EXTRA_CHARSETS:STRING=all
