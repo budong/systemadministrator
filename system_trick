@@ -110,3 +110,8 @@ sysctl -p
 cat /proc/sys/vm/swappiness
 
 netstat -ant|grep 80
+
+
+
+linux 多线程下载工具：
+axel
