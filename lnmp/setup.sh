@@ -108,7 +108,7 @@ cd php-5.3.21/
 --enable-shmop --enable-sysvsem --enable-inline-optimization --with-curl --with-curlwrappers --enable-mbregex \
 --enable-fpm --enable-mbstring --with-mcrypt --with-gd \
 --enable-gd-native-ttf --with-openssl --with-mhash --enable-pcntl --enable-sockets \
---with-ldap --with-ldap-sasl --with-xmlrpc --enable-zip --enable-soap 
+--with-ldap --with-ldap-sasl --with-xmlrpc --enable-zip --enable-soap --enable-ftp
 make ZEND_EXTRA_LIBS='-liconv'
 make install
 cp php.ini-production /usr/local/php_fpm/etc/php.ini
