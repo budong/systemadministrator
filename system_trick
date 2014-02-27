@@ -115,3 +115,11 @@ netstat -ant|grep 80
 
 linux 多线程下载工具：
 axel
+
+
+用syslog就可以写到一个文件里
+awstats有日志合并的功能
+
+
+用某个系统用户执行命令:
+#00 08 22 * * su - www -c "/usr/local/php/bin/php /data/google/index.php" > /dev/null 2>&1 &

@@ -310,3 +310,6 @@ mysqladmin -uroot -p'p@ssw0rd'  extended-status -i1 | awk 'BEGIN {switch=0;print
     $2 ~ /Threads_running$/    {tr=$4;if(switch==0) switch=1; else printf "%-6d %-8d %-7d %-8d %-10d %d \n", q,c,r,c+r,tc,tr;}'
 查看TPS和QPS。
 
+
+--single-transaction 使用的快照，虽然不会锁表，但是也不会加什么行锁
+
