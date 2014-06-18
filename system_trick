@@ -123,3 +123,16 @@ awstats有日志合并的功能
 
 用某个系统用户执行命令:
 #00 08 22 * * su - www -c "/usr/local/php/bin/php /data/google/index.php" > /dev/null 2>&1 &
+
+传文件时可以使用这个，简单的httpserver
+python -m SimpleHTTPServer 8080
+
+安装apache ab:
+yum install httpd-tools
+参考：http://www.nginx.cn/110.html
+
+每隔2秒，显示5次，所有活动进程的CPU使用情况
+pidstat 2 5 
+
+每隔2秒，显示5次，CPU使用的情况
+sar 2 5
