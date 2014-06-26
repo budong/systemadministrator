@@ -43,3 +43,6 @@ tcpdump host 192.168.245.131 -s0 -w lvs_m.pcap
 
 ipvsadm -L -c -n|awk '{print $4}'|awk -F: '{print $1}'|sort -n|uniq -c |sort -n|tail -10
 iptables -I INPUT  -p tcp -s ip  -j DROP
+
+PATH=/bin:/sbin:/usr/sbin:/usr/local/bin:/usr/local/sbin:~/bin
+export PATH
