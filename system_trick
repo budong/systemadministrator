@@ -24,8 +24,10 @@ label=/new  /new  ext3  defaults  1 1
 mount -L /new /new
 
 或者
+0.blkid
 1.blkid 查看uuid
 2.UUID＝"e61f4197-5f00-4f4f-917c-290922a85339"   /new     ext3    defaults   1   2
+3./bin/mount -U "e61f4197-5f00-4f4f-917c-290922a85339" /new
 
 三：查看开机启动项
 ntsysv 
@@ -136,3 +138,11 @@ pidstat 2 5
 
 每隔2秒，显示5次，CPU使用的情况
 sar 2 5
+
+
+
+更改文件描述符设置
+/etc/security/limits.conf,最后追加
+* hard nofile 40960
+* soft nofile 40960
+
