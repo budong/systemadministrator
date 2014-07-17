@@ -146,3 +146,5 @@ sar 2 5
 * hard nofile 40960
 * soft nofile 40960
 
+
+dmesg | grep -i error
