@@ -148,3 +148,11 @@ sar 2 5
 
 
 dmesg | grep -i error
+
+最小化安装系统后：
+yum groupinstall "Development Libraries" "Development Tools" -y
+
+demsg 注意oom-killer:
+http://www.vpsee.com/2013/10/how-to-configure-the-linux-oom-killer/
+http://laoxu.blog.51cto.com/4120547/1267097
+
