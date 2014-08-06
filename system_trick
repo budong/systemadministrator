@@ -156,3 +156,5 @@ demsg 注意oom-killer:
 http://www.vpsee.com/2013/10/how-to-configure-the-linux-oom-killer/
 http://laoxu.blog.51cto.com/4120547/1267097
 
+设置ulimit:
+ulimit -HSn 65535
