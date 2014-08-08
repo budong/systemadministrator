@@ -158,3 +158,9 @@ http://laoxu.blog.51cto.com/4120547/1267097
 
 设置ulimit:
 ulimit -HSn 65535
+
+
+查看磁盘使用率ncdu一个不错的工具：
+epel
+yum -y install ncdu
+http://dev.yorhel.nl/ncdu
