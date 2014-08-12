@@ -1,3 +1,6 @@
+1.error_page
+http://nginx.org/cn/docs/http/ngx_http_proxy_module.html#proxy_store
+
 location /{
     root /data/cache;
     error_page 404 = @fetch;
@@ -13,3 +16,27 @@ location @fetch {
     proxy_temp_path /data/temp;
     root /data/cache;
 }
+
+2.
+http://itoedr.blog.163.com/blog/static/1202842972013320113211114/
+
+location / {
+    root /home/html/;
+    ###启用proxy_store，指定nginx将代理返回的文件保存
+    proxy_store on;
+    ###让后端不要返回压缩（gzip或deflate）的内容，保存压缩后的内容会引发乱子。
+    proxy_set_header Accept-Encoding '';
+    ###临时目录，这个目录要和/home/html在同一个硬盘分区内
+    proxy_temp_path /home/tmp;
+    if ( !-f $request_filename )
+    {
+        proxy_pass http://www.orgwww.com/;
+    }
+}
+
+原理说明:
+    就是找不到文件时通过proxy_pass指定的源服务区地址抓取文件保存到本地,proxy_store完全是在本地服务器保存了一个跟源服务器一模一样的目录结构;但缺点就是无法限制空间大小，如果本地服务器空间比源服务器小，很容易就把硬盘空间撑爆了，所以需要定时清理一些文件以保证服务器空间。
+
+
+同时可以参考这篇文章：
+    http://nightsailer.com/2008/05/24/252.html
