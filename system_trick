@@ -165,3 +165,8 @@ ulimit -HSn 65535
 epel
 yum -y install ncdu
 http://dev.yorhel.nl/ncdu
+
+
+查看内核模块相关信息：
+lsmod
+modinfo
