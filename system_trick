@@ -178,3 +178,7 @@ inux:top中显示每个进程正在哪个CPU上执行
 认真看man top，终于找到方法：
 执行top后，按f，按j，然后按空格退出，这样就出现一列#C，可以看见当前进程正在哪个CPU上执行了。
 按W(大写的W)，将top的配置写入配置文件，下次打开top的时候就能看见同样的配置了。 
+
+查看视频文件信息：
+yum -y install mediainfo
+mediainfo 130653803.hlv 
