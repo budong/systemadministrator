@@ -26,7 +26,7 @@ mount -L /new /new
 或者
 0.blkid
 1.blkid 查看uuid
-2.UUID＝"e61f4197-5f00-4f4f-917c-290922a85339"   /new     ext3    defaults   1   2
+2.UUID="e61f4197-5f00-4f4f-917c-290922a85339"   /new     ext3    defaults   1   2
 3./bin/mount -U "e61f4197-5f00-4f4f-917c-290922a85339" /new
 /bin/mount UUID=a1a022c7-9041-4a39-8e08-d33864306a26 /data5
 
@@ -182,3 +182,8 @@ inux:top中显示每个进程正在哪个CPU上执行
 查看视频文件信息：
 yum -y install mediainfo
 mediainfo 130653803.hlv 
+
+
+查看命令是属于哪一包：
+rpm -qf /sbin/parted
+parted-2.1-21.el6.x86_64
