@@ -467,6 +467,7 @@ connect_timeout = 300
 expire_logs_day = 7
 log-slave-updates = 1
 log-error = /data/mysql_db/error.log
+pid-file = /data/mysql_db/mysqld.pid
 character-set-server=utf8 
 collation-server=utf8_general_ci
 #tmpdir=/dev/shm
