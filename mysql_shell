@@ -316,3 +316,6 @@ mysqladmin -uroot -p'p@ssw0rd'  extended-status -i1 | awk 'BEGIN {switch=0;print
 
 --single-transaction 使用的快照，虽然不会锁表，但是也不会加什么行锁
 
+
+启动mysql:
+/usr/local/mysql/bin/mysqld_safe  --defaults-file=/usr/home/peiqiang/my2.cnf --datadir=/data0/mysql_db/ --basedir=/usr/local/mysql/ &
