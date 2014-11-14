@@ -198,3 +198,6 @@ nc -l 4444 > cache.tar.gz
 nc  目的主机ip    目的端口 < 要发送的文件
 nc  192.168.0.85  4444 < /root/cache.tar.gz
 参考地址：http://blog.sina.com.cn/s/blog_502c8cc4010111wv.html
+
+加快yum下载速度，不解释：
+yum -y install yum-fastestmirror
