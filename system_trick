@@ -201,3 +201,8 @@ nc  192.168.0.85  4444 < /root/cache.tar.gz
 
 加快yum下载速度，不解释：
 yum -y install yum-fastestmirror
+
+怎样检查RPM包安装路径？
+rpm -ql  相关安装路径
+rpm -qc  配置文件的安装路径
+rpm -qd  说明文件的安装路径
