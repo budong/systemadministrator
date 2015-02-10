@@ -319,3 +319,9 @@ mysqladmin -uroot -p'p@ssw0rd'  extended-status -i1 | awk 'BEGIN {switch=0;print
 
 启动mysql:
 /usr/local/mysql/bin/mysqld_safe  --defaults-file=/usr/home/peiqiang/my2.cnf --datadir=/data0/mysql_db/ --basedir=/usr/local/mysql/ &
+
+连接数据库时乱码：
+先查看服务器端编码，连接时的编码:
+show variables like '%char%';
+如果不对，使用utf8：
+mysql --default-character-set=utf-8 -uroot -p
