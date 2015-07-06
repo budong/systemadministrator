@@ -206,3 +206,7 @@ yum -y install yum-fastestmirror
 rpm -ql  相关安装路径
 rpm -qc  配置文件的安装路径
 rpm -qd  说明文件的安装路径
+
+
+检查是否使用swappiness
+/proc/sys/vm/swappiness
