@@ -85,6 +85,10 @@ iptables配置文件：
 [root@localhost opt]# yum install yum-downloadonly
 ...
 
+yum install yum-utils
+yumdownloader <package>
+https://access.redhat.com/solutions/10154
+
 #  下载httpd 包，包曾经下载过，所以不能用update ，若没有--doanloaddir参数设置，表示下载到默认目录
 # /var/cache/yum 
 [root@localhost opt]# yum update httpd --downloadonly --downloaddir=/
