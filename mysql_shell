@@ -116,6 +116,8 @@ alter table new_example7 change e en char(30);
 
 alter table 表名 add 属性名1 数据类型 [完整性约束条件] [first| after 属性名2];
 alter table new_example7 add phone varchar(20);
+有默认值的情况
+ALTER TABLE table1 ADD COLUMN foo INT DEFAULT 0;
 
 alter table 表名 drop 属性名；
 alter table example7 drop num;
